@@ -2,9 +2,11 @@ package com.wallpaper.art.entities;
 
 
 
+import com.wallpaper.art.utils.Env;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,7 +21,8 @@ public class Wallpaper {
     @Embedded
     private Resolution resolution;
     private String image;
-    @ManyToMany(cascade = {
+    private Long fileSize;
+    @ManyToMany(fetch = FetchType.EAGER,cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
@@ -27,5 +30,7 @@ public class Wallpaper {
             joinColumns = @JoinColumn(name = "wallpaper_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private List<Category> categories;
+    private List<Category> categories=new ArrayList<Category>();
+
+
 }

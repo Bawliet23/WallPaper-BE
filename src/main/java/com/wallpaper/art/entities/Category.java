@@ -17,4 +17,12 @@ public class Category {
             CascadeType.MERGE
     })
     private List<Wallpaper> wallpapers;
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
