@@ -13,6 +13,7 @@ public class WallpaperDTO {
     private int download;
     private Resolution resolution;
     private String image;
+    private String type;
     private Long fileSize;
     private List<CategoryDTO> categories;
     public String getImage() {

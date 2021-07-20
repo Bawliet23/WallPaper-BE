@@ -43,7 +43,7 @@ public class WallpaperService implements IWallpaperService {
     public WallpaperDTO getWallpaperById(Long id) {
         Optional<Wallpaper> byId = wallpaperRepository.findById(id);
         if (byId.isPresent()){
-            System.out.println(byId.get().getCategories());
+            byId.get().setView( byId.get().getView()+1);
             return modelMapper.map(byId.get(),WallpaperDTO.class);
         }
         return null;

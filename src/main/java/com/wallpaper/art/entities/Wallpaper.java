@@ -21,6 +21,7 @@ public class Wallpaper {
     @Embedded
     private Resolution resolution;
     private String image;
+    private String type;
     private Long fileSize;
     @ManyToMany(fetch = FetchType.EAGER,cascade = {
             CascadeType.PERSIST,
