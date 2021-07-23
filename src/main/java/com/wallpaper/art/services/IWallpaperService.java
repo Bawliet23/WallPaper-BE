@@ -11,5 +11,6 @@ import java.io.IOException;
 public interface IWallpaperService {
     Page<WallpaperDTO> getAll(Pageable page);
     WallpaperDTO getWallpaperById(Long id);
+    WallpaperDTO getWallpaperByDescription(String description);
     void uploadWallpaper(WallpaperDTO wallpaperDTO, MultipartFile image) throws IOException;
 }
