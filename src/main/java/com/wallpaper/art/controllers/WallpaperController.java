@@ -3,15 +3,18 @@ package com.wallpaper.art.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wallpaper.art.dto.WallpaperDTO;
 import com.wallpaper.art.services.IWallpaperService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 
-@RestController()
+@RestController
 @RequestMapping("/wallpapers")
 @CrossOrigin("*")
 public class WallpaperController {
@@ -41,6 +44,11 @@ public class WallpaperController {
         WallpaperDTO wallpaperDTO = objectMapper.readValue(wallpaper,WallpaperDTO.class);
         wallpaperService.uploadWallpaper(wallpaperDTO,image);
         return ResponseEntity.ok().build();
+    }
+    @GetMapping("/genres")
+    public ResponseEntity<Page<WallpaperDTO>> getBookByGenre(@PageableDefault(size = 10)Pageable page, @RequestParam List<Long> genresId){
+        return ResponseEntity.ok()
+                .body(wallpaperService.getBooksByGenres(page, genresId));
     }
 
 
