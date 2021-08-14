@@ -11,8 +11,8 @@ import java.util.List;
 
 public interface IWallpaperService {
     Page<WallpaperDTO> getAll(Pageable page);
-    Page<WallpaperDTO> getBooksByGenres(Pageable page, List<Long> genresId);
+    Page<WallpaperDTO> getWallpapersByGenres(Pageable page, List<Long> genresId);
     WallpaperDTO getWallpaperById(Long id);
-    WallpaperDTO getWallpaperByDescription(String description);
+    Page<WallpaperDTO> getWallpaperByDescription(String description,Pageable page);
     void uploadWallpaper(WallpaperDTO wallpaperDTO, MultipartFile image) throws IOException;
 }

@@ -40,7 +40,7 @@ public class WallpaperService implements IWallpaperService {
     }
 
     @Override
-    public Page<WallpaperDTO> getBooksByGenres(Pageable page, List<Long> genresId) {
+    public Page<WallpaperDTO> getWallpapersByGenres(Pageable page, List<Long> genresId) {
         List<Category> categories =new ArrayList<Category>();
         for(Long id : genresId){
             Optional<Category> category = categoryRepository.findById(id);
@@ -61,10 +61,11 @@ public class WallpaperService implements IWallpaperService {
     }
 
     @Override
-    public WallpaperDTO getWallpaperByDescription(String description){
-        Optional<Wallpaper> byDescription = wallpaperRepository.findWallpaperByDescriptionContains(description);
+    public Page<WallpaperDTO> getWallpaperByDescription(String description,Pageable page){
+        Optional<Page<Wallpaper>> byDescription = wallpaperRepository.findWallpapersByDescriptionContains(description,page);
         if(byDescription.isPresent()){
-            return modelMapper.map(byDescription.get(),WallpaperDTO.class);
+           return byDescription.get().map(wallpaper->modelMapper.map(wallpaper,WallpaperDTO.class));
+
         }
         return null;
     }

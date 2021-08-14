@@ -46,9 +46,14 @@ public class WallpaperController {
         return ResponseEntity.ok().build();
     }
     @GetMapping("/genres")
-    public ResponseEntity<Page<WallpaperDTO>> getBookByGenre(@PageableDefault(size = 10)Pageable page, @RequestParam List<Long> genresId){
+    public ResponseEntity<Page<WallpaperDTO>> getBookByGenre(@PageableDefault(size = 21)Pageable page, @RequestParam List<Long> genresId){
         return ResponseEntity.ok()
-                .body(wallpaperService.getBooksByGenres(page, genresId));
+                .body(wallpaperService.getWallpapersByGenres(page, genresId));
+    }
+    @GetMapping("/search/{search}")
+    public ResponseEntity<Page<WallpaperDTO>> getBookByGenre(@PageableDefault(size = 21)Pageable page, @PathVariable String search){
+        return ResponseEntity.ok()
+                .body(wallpaperService.getWallpaperByDescription(search,page));
     }
 
 

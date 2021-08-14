@@ -13,6 +13,6 @@ import java.util.Optional;
 @Repository
 public interface IWallpaperRepository extends JpaRepository<Wallpaper,Long> {
     Page<Wallpaper> findAll(Pageable page);
-    Optional<Wallpaper> findWallpaperByDescriptionContains(String description);
+    Optional<Page<Wallpaper>> findWallpapersByDescriptionContains(String description,Pageable page);
     Page<Wallpaper> findWallpapersByCategoriesIn(List<Category> categories,Pageable page);
 }
